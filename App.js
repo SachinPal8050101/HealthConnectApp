@@ -1,19 +1,35 @@
-import {View, Text, NativeModules} from 'react-native';
-import React, {useEffect} from 'react';
+import {View, Text, NativeModules, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import ShowHealthAppInstallModal from './src/common/installAppModal';
 
-const {HealthConnectModule} = NativeModules;
+const {HealthAppModule} = NativeModules;
 
 const App = () => {
+  const [isConnectAppInstall, setIsConnectAppInstall] = useState(true);
+
+  const callBack = res => {
+    setIsConnectAppInstall(res);
+  };
   useEffect(() => {
-    HealthConnectModule.CustomeFun((err, name) => {
-      console.log(name); // Outputs: Sachin
-    });
+    HealthAppModule.isPackageInstalled(
+      'com.google.android.apps.healthdata',
+      callBack,
+    );
   }, []);
   return (
-    <View>
+    <View style={style.mainView}>
       <Text>App---</Text>
+      {!isConnectAppInstall && ShowHealthAppInstallModal()}
     </View>
   );
 };
 
 export default App;
+
+const style = StyleSheet.create({
+  mainView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
