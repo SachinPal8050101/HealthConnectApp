@@ -108,6 +108,7 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
+    implementation "androidx.health.connect:connect-client:1.1.0-alpha06"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
 
