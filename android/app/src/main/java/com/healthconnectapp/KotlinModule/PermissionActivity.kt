@@ -7,6 +7,8 @@ import androidx.health.connect.client.HealthConnectClient
 import androidx.health.connect.client.PermissionController
 import androidx.health.connect.client.permission.HealthPermission
 import androidx.health.connect.client.records.HeartRateRecord
+import androidx.health.connect.client.records.WeightRecord
+import androidx.health.platform.client.exerciseroute.ExerciseRoute
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
@@ -14,8 +16,11 @@ class PermissionActivity : AppCompatActivity() {
 
     val PERMISSIONS = setOf(
         HealthPermission.getReadPermission(HeartRateRecord::class),
-        HealthPermission.getWritePermission(HeartRateRecord::class)
+        HealthPermission.getWritePermission(HeartRateRecord::class),
+        HealthPermission.getReadPermission(WeightRecord::class)
     )
+
+
 
     private val requestPermissionActivityContract = PermissionController.createRequestPermissionResultContract()
 
